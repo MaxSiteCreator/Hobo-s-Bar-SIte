@@ -439,6 +439,30 @@ h1,h2,h3,p,blockquote,dd,.n,.dn,.dt,.lede{overflow-wrap:break-word;min-width:0}
   .toast{font-size:16px}
 }
 
+/* ===== header: larger type ===== */
+.nav .wrap{padding-block:18px;gap:30px}
+.brand{font-size:38px;gap:12px}.brand svg{width:40px;height:40px}
+.nav nav{gap:32px}
+.nav nav a{font-size:18px;letter-spacing:.1em;font-weight:500}
+.nav .status{font-size:16px}
+.status i{width:10px;height:10px}
+.burger{width:54px;height:54px}
+.burger span{left:16px;right:16px}.burger span:nth-child(1){top:21px}.burger span:nth-child(2){top:30px}
+.menu-open .burger span:nth-child(1),.menu-open .burger span:nth-child(2){top:25.5px}
+.sheet{padding-top:calc(110px + env(safe-area-inset-top,0px))}
+@media (max-width:1100px){
+  .nav nav{display:none}
+  .burger{display:block}
+  .nav .status{margin-left:auto}
+}
+@media (max-width:640px){
+  .nav .wrap{padding-block:14px;gap:14px}
+  .brand{font-size:34px}.brand svg{width:36px;height:36px}
+  .burger{margin-left:auto}
+  .hero-top .status-hero{font-size:17px}
+  .hero-top{font-size:16px}
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
