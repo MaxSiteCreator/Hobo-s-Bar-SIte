@@ -223,6 +223,47 @@ footer{border-top:1px solid var(--line);padding-block:clamp(50px,7vw,90px) 40px;
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);background:var(--chalk);color:var(--night);font-weight:700;font-size:14px;padding:12px 20px;border-radius:999px;z-index:60;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 .toast.show{transform:translate(-50%,0)}
 
+/* ===== larger reading scale, all widths ===== */
+body{font-size:19px}
+.nav nav a{font-size:15.5px}
+.status{font-size:14px}
+.brand{font-size:30px}.brand svg{width:34px;height:34px}
+.btn{font-size:17px;padding:18px 30px}
+.btn svg{width:20px;height:20px}
+.hero-top{font-size:15px}
+.chalk-note{font-size:clamp(26px,3vw,36px)}
+.lede{font-size:clamp(21px,2.3vw,28px);max-width:36ch}
+.score span{font-size:15.5px}
+.stars svg{width:24px;height:24px}
+.ticker-track span{font-size:clamp(30px,4vw,52px)}
+.eyebrow{font-size:14px}
+h2{font-size:clamp(54px,8vw,120px)}
+.intro p{font-size:19.5px}
+.sign h3{font-size:34px}
+.sign p{font-size:18px}
+.sign .meaning{font-size:29px}
+.drink h3{font-size:36px}
+.drink p{font-size:17.5px}
+.spec span{font-size:13px;padding:5px 11px}
+.drink-foot{font-size:16.5px}
+.menu-list .n{font-size:clamp(32px,4vw,50px)}
+.menu-list .d{font-size:17.5px}
+.menu-list .t,.menu-list .k{font-size:13.5px}
+.happy h3{font-size:40px}
+.happy p{font-size:18.5px}
+.day .dn{font-size:36px}
+.day .dt{font-size:16.5px}
+.day .dh{font-size:14px}
+.live-note{font-size:18px}
+.quote blockquote{font-size:clamp(21px,2vw,27px)}
+.quote.main blockquote{font-size:clamp(26px,2.8vw,38px)}
+.quote figcaption{font-size:14.5px}
+.tags span{font-size:14.5px}
+.info dt{font-size:13.5px}
+.info dd{font-size:21px}
+.copy{font-size:13px;padding:6px 12px}
+.foot-row{font-size:14.5px}
+
 /* ===== mobile ===== */
 .burger{display:none;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(239,230,213,.04);color:var(--chalk);cursor:pointer;position:relative;flex:none}
 .burger span{position:absolute;left:14px;right:14px;height:2px;background:currentColor;border-radius:2px;transition:transform .45s cubic-bezier(.7,0,.2,1),top .45s cubic-bezier(.7,0,.2,1)}
@@ -383,6 +424,48 @@ footer{border-top:1px solid var(--line);padding-block:clamp(50px,7vw,90px) 40px;
   .foot-row{font-size:13.5px}
   .sheet-foot{font-size:14.5px}
   .toast{font-size:16px}
+}
+
+/* ===== phone: bigger again ===== */
+@media (max-width:640px){
+  body{font-size:19.5px}
+  .brand{font-size:29px}
+  .status{font-size:13.5px}
+  .hero-top{font-size:15.5px}
+  .hero-top .chalk-note{font-size:31px}
+  .lede{font-size:24px;max-width:none}
+  .btn,.dock .btn{font-size:18px}
+  .score span{font-size:16px}
+  .ticker-track span{font-size:40px}
+  .eyebrow{font-size:14.5px}
+  h2{font-size:clamp(58px,17vw,86px)}
+  .intro p{font-size:19.5px}
+  .sign h3{font-size:32px}
+  .sign p{font-size:18.5px}
+  .sign .meaning{font-size:26px}
+  .drink h3{font-size:40px}
+  .drink p{font-size:18.5px}
+  .spec span{font-size:14px}
+  .drink-foot{font-size:17.5px}
+  .swipe-hint{font-size:14px}
+  .menu-list .n{font-size:42px}
+  .menu-list .d{font-size:18.5px}
+  .menu-list .t{font-size:14px}
+  .happy h3{font-size:42px}
+  .happy p{font-size:19px}
+  .day .dn{font-size:42px}
+  .day .dt{font-size:18.5px}
+  .day .dh{font-size:15px}
+  .week.rail>*{width:48vw;min-height:200px}
+  .live-note{font-size:18.5px}
+  .tags span{font-size:15.5px}
+  .quote blockquote{font-size:23px}
+  .quote.main blockquote{font-size:28px}
+  .quote figcaption{font-size:15px}
+  .info dt{font-size:14.5px}
+  .info dd{font-size:21px}
+  .foot-row{font-size:15px}
+  .sheet-foot{font-size:16px}
 }
 
 @media (prefers-reduced-motion:reduce){
