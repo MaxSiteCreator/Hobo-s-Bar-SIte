@@ -264,6 +264,21 @@ h2{font-size:clamp(54px,8vw,120px)}
 .copy{font-size:13px;padding:6px 12px}
 .foot-row{font-size:14.5px}
 
+/* text-size control */
+.textsize{flex:none;height:46px;min-width:46px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:rgba(239,230,213,.04);color:var(--chalk);cursor:pointer;
+  display:flex;align-items:baseline;justify-content:center;gap:1px;font-family:var(--f-display);font-weight:800;line-height:1;transition:border-color .25s,color .25s}
+.textsize span:first-child{font-size:15px}.textsize span:last-child{font-size:23px}
+.textsize:hover{border-color:var(--amber);color:var(--amber)}
+.textsize[data-step="1"],.textsize[data-step="2"]{border-color:var(--amber);color:var(--amber)}
+@media (max-width:860px){.drinks.rail>*{width:88%!important}.week.rail>*{width:58%!important}}
+.status-hero{display:none}
+@media (max-width:640px){
+  .nav .status{display:none}
+  .nav .textsize{margin-left:auto;height:56px;min-width:56px}
+  .textsize span:first-child{font-size:17px}.textsize span:last-child{font-size:27px}
+  .hero-top .status-hero{display:flex;font-size:16px;color:var(--chalk);text-transform:none;letter-spacing:.02em}
+}
+
 /* ===== mobile ===== */
 .burger{display:none;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(239,230,213,.04);color:var(--chalk);cursor:pointer;position:relative;flex:none}
 .burger span{position:absolute;left:14px;right:14px;height:2px;background:currentColor;border-radius:2px;transition:transform .45s cubic-bezier(.7,0,.2,1),top .45s cubic-bezier(.7,0,.2,1)}
@@ -568,6 +583,7 @@ h2{font-size:clamp(54px,8vw,120px)}
       <a href="#dove">Dove</a>
     </nav>
     <div class="status" id="status"><i></i><span>Rimini · Marina Centro</span></div>
+    <button class="textsize" id="textsize" type="button" aria-label="Ingrandisci il testo"><span>A</span><span>A</span></button>
     <button class="burger" id="burger" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="sheet"><span></span><span></span></button>
   </div>
 </header>
@@ -599,6 +615,7 @@ h2{font-size:clamp(54px,8vw,120px)}
   <!-- HERO -->
   <div class="hero wrap">
     <div class="hero-top">
+      <span class="status status-hero" id="status2"><i></i><span></span></span>
       <span>Cocktail bar &amp; pub · Rimini</span>
       <span class="chalk-note">il posto dove fermarsi</span>
     </div>
@@ -859,6 +876,41 @@ h2{font-size:clamp(54px,8vw,120px)}
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- readable on every phone ----------
+     Some viewers render the page in a desktop-wide frame and shrink it to fit the phone,
+     which makes everything tiny. Detect that, switch on the phone layout and zoom back to real size.
+     A visible "AA" button then lets anyone make the text bigger still. */
+  const html = document.documentElement;
+  const coarse = matchMedia('(pointer:coarse)').matches;
+  const shrunk = coarse && screen.width > 0 && innerWidth > screen.width * 1.25 && screen.width < 600;
+  const base = shrunk ? innerWidth / screen.width : 1;
+  if (shrunk){
+    let css = '';
+    for (const sh of document.styleSheets){
+      let rules; try { rules = sh.cssRules; } catch (e) { continue; }
+      for (const r of rules) if (r.media && /max-width/.test(r.media.mediaText)) for (const rr of r.cssRules) css += rr.cssText + '\n';
+    }
+    const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+  }
+  const phone = shrunk || innerWidth <= 640;
+  const steps = [1, 1.2, 1.4];
+  let step = phone ? 1 : 0;
+  try { const s = localStorage.getItem('hobos-text'); if (s !== null) step = Math.min(2, Math.max(0, +s)); } catch (e) {}
+  const applyZoom = () => {
+    html.style.zoom = (base * steps[step]).toFixed(3);
+    const b = document.getElementById('textsize');
+    b.dataset.step = step;
+    b.setAttribute('aria-label', step < 2 ? 'Ingrandisci il testo' : 'Riporta il testo alla misura normale');
+  };
+  applyZoom();
+  document.getElementById('textsize').addEventListener('click', () => {
+    step = (step + 1) % steps.length; applyZoom();
+    try { localStorage.setItem('hobos-text', step); } catch (e) {}
+    const t = document.getElementById('toast');
+    t.textContent = ['Testo normale', 'Testo grande', 'Testo molto grande'][step];
+    t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1600);
+  });
+
   /* ---------- hero pour ---------- */
   const wave = document.getElementById('wavePath');
   const bubbles = document.getElementById('bubbles');
@@ -1023,8 +1075,10 @@ h2{font-size:clamp(54px,8vw,120px)}
   if (open) msg = 'Aperto ora';
   else if (dow === 0) msg = 'Chiuso oggi · riapre martedì alle 17';
   else msg = 'Apre oggi alle 17';
-  st.classList.toggle('open', open);
-  st.querySelector('span').textContent = msg;
+  [st, document.getElementById('status2')].forEach(s => {
+    s.classList.toggle('open', open);
+    s.querySelector('span').textContent = msg;
+  });
 
   /* ---------- copy ---------- */
   const toast = document.getElementById('toast');
