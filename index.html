@@ -264,19 +264,17 @@ h2{font-size:clamp(54px,8vw,120px)}
 .copy{font-size:13px;padding:6px 12px}
 .foot-row{font-size:14.5px}
 
-/* text-size control */
-.textsize{flex:none;height:46px;min-width:46px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:rgba(239,230,213,.04);color:var(--chalk);cursor:pointer;
-  display:flex;align-items:baseline;justify-content:center;gap:1px;font-family:var(--f-display);font-weight:800;line-height:1;transition:border-color .25s,color .25s}
-.textsize span:first-child{font-size:15px}.textsize span:last-child{font-size:23px}
-.textsize:hover{border-color:var(--amber);color:var(--amber)}
-.textsize[data-step="1"],.textsize[data-step="2"]{border-color:var(--amber);color:var(--amber)}
-@media (max-width:860px){.drinks.rail>*{width:88%!important}.week.rail>*{width:58%!important}}
+/* nothing may be clipped: long words wrap instead of running off screen */
+h1,h2,h3,p,blockquote,dd,.n,.dn,.dt,.lede{overflow-wrap:break-word;min-width:0}
 .status-hero{display:none}
 @media (max-width:640px){
+  .drinks.rail>*{width:86%!important}
+  .week.rail>*{width:44%!important}
   .nav .status{display:none}
-  .nav .textsize{margin-left:auto;height:56px;min-width:56px}
-  .textsize span:first-child{font-size:17px}.textsize span:last-child{font-size:27px}
-  .hero-top .status-hero{display:flex;font-size:16px;color:var(--chalk);text-transform:none;letter-spacing:.02em}
+  .burger{margin-left:auto}
+  .hero-top .status-hero{display:flex;font-size:14px;color:var(--chalk);text-transform:none;letter-spacing:.02em}
+  .pour{width:100%;margin-inline:0}
+  .sheet a.big-link{font-size:clamp(40px,12vw,64px)}
 }
 
 /* ===== mobile ===== */
@@ -328,7 +326,7 @@ h2{font-size:clamp(54px,8vw,120px)}
   .hero{padding-block:26px 34px}
   .hero-top{flex-direction:column;align-items:flex-start;gap:4px}
   .hero-top .chalk-note{align-self:flex-end;margin-top:-4px}
-  .pour{width:calc(100% + 2*var(--gutter) - 8px);margin-inline:calc(-1*var(--gutter) + 4px);margin-top:4px}
+  .pour{margin-top:4px}
   .lede{font-size:19px}
   .cta .btn{flex:1 1 auto;justify-content:center}
   .score{grid-template-columns:auto 1fr;padding-top:18px}
@@ -441,120 +439,6 @@ h2{font-size:clamp(54px,8vw,120px)}
   .toast{font-size:16px}
 }
 
-/* ===== phone: bigger again ===== */
-@media (max-width:640px){
-  body{font-size:19.5px}
-  .brand{font-size:29px}
-  .status{font-size:13.5px}
-  .hero-top{font-size:15.5px}
-  .hero-top .chalk-note{font-size:31px}
-  .lede{font-size:24px;max-width:none}
-  .btn,.dock .btn{font-size:18px}
-  .score span{font-size:16px}
-  .ticker-track span{font-size:40px}
-  .eyebrow{font-size:14.5px}
-  h2{font-size:clamp(58px,17vw,86px)}
-  .intro p{font-size:19.5px}
-  .sign h3{font-size:32px}
-  .sign p{font-size:18.5px}
-  .sign .meaning{font-size:26px}
-  .drink h3{font-size:40px}
-  .drink p{font-size:18.5px}
-  .spec span{font-size:14px}
-  .drink-foot{font-size:17.5px}
-  .swipe-hint{font-size:14px}
-  .menu-list .n{font-size:42px}
-  .menu-list .d{font-size:18.5px}
-  .menu-list .t{font-size:14px}
-  .happy h3{font-size:42px}
-  .happy p{font-size:19px}
-  .day .dn{font-size:42px}
-  .day .dt{font-size:18.5px}
-  .day .dh{font-size:15px}
-  .week.rail>*{width:48vw;min-height:200px}
-  .live-note{font-size:18.5px}
-  .tags span{font-size:15.5px}
-  .quote blockquote{font-size:23px}
-  .quote.main blockquote{font-size:28px}
-  .quote figcaption{font-size:15px}
-  .info dt{font-size:14.5px}
-  .info dd{font-size:21px}
-  .foot-row{font-size:15px}
-  .sheet-foot{font-size:16px}
-}
-
-/* ===== phone: close-up scale ===== */
-@media (max-width:640px){
-  :root{--gutter:18px}
-  body{font-size:22px;line-height:1.5;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
-  .nav .wrap{padding-block:14px}
-  .brand{font-size:33px}.brand svg{width:38px;height:38px}
-  .status{font-size:15px}
-  .status i{width:10px;height:10px}
-  .burger{width:56px;height:56px}
-  .burger span{left:17px;right:17px}.burger span:nth-child(1){top:23px}.burger span:nth-child(2){top:31px}
-  .menu-open .burger span:nth-child(1),.menu-open .burger span:nth-child(2){top:27px}
-  .sheet a.big-link{font-size:clamp(58px,17vw,84px)}
-  .sheet a.big-link small{font-size:14px}
-  .sheet-foot{font-size:18px}
-
-  .hero-top{font-size:17px}
-  .hero-top .chalk-note{font-size:36px}
-  .lede{font-size:27px;line-height:1.4}
-  .btn,.dock .btn{font-size:20px}
-  .btn{padding:21px 26px}
-  .dock .btn{padding:19px 10px}
-  .btn svg{width:23px;height:23px}
-  .score b{font-size:104px}
-  .stars svg{width:28px;height:28px}
-  .score span{font-size:18px}
-  .ticker-track span{font-size:48px}
-
-  .eyebrow{font-size:16px}
-  h2{font-size:clamp(64px,19vw,96px)}
-  .intro p{font-size:22px}
-
-  .sign{grid-template-columns:80px 1fr;padding:30px 20px}
-  .sign svg{width:80px;height:80px}
-  .sign .meaning{font-size:30px}
-  .sign h3{font-size:37px}
-  .sign p{font-size:21px}
-
-  .drinks.rail>*{width:88vw;max-width:420px}
-  .drink .glass{height:200px}
-  .drink h3{font-size:46px}
-  .drink p{font-size:21px}
-  .spec span{font-size:16px;padding:6px 13px}
-  .drink-foot{font-size:19px}
-  .drink-foot .chalk-note{font-size:32px}
-  .swipe-hint{font-size:15.5px}
-
-  .menu-list .n{font-size:48px}
-  .menu-list .d{font-size:21px}
-  .menu-list .t{font-size:15.5px}
-  .happy .big{font-size:130px}
-  .happy h3{font-size:46px}
-  .happy p{font-size:21px}
-
-  .week.rail>*{width:56vw;max-width:260px;min-height:230px}
-  .day .dn{font-size:50px}
-  .day .dt{font-size:21px}
-  .day .dh{font-size:17px}
-  .day.today::after{font-size:22px}
-  .live-note{font-size:20px}
-
-  .tags span{font-size:17px;padding:9px 16px}
-  .quote blockquote{font-size:26px}
-  .quote.main blockquote{font-size:31px}
-  .quote figcaption{font-size:17px}
-
-  .info dt{font-size:16px}
-  .info dd{font-size:24px}
-  .copy{font-size:15px;padding:8px 14px}
-  .foot-row{font-size:17px}
-  .toast{font-size:18px;bottom:calc(104px + env(safe-area-inset-bottom,0px))}
-}
-
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
@@ -583,7 +467,6 @@ h2{font-size:clamp(54px,8vw,120px)}
       <a href="#dove">Dove</a>
     </nav>
     <div class="status" id="status"><i></i><span>Rimini · Marina Centro</span></div>
-    <button class="textsize" id="textsize" type="button" aria-label="Ingrandisci il testo"><span>A</span><span>A</span></button>
     <button class="burger" id="burger" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="sheet"><span></span><span></span></button>
   </div>
 </header>
@@ -876,40 +759,6 @@ h2{font-size:clamp(54px,8vw,120px)}
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- readable on every phone ----------
-     Some viewers render the page in a desktop-wide frame and shrink it to fit the phone,
-     which makes everything tiny. Detect that, switch on the phone layout and zoom back to real size.
-     A visible "AA" button then lets anyone make the text bigger still. */
-  const html = document.documentElement;
-  const coarse = matchMedia('(pointer:coarse)').matches;
-  const shrunk = coarse && screen.width > 0 && innerWidth > screen.width * 1.25 && screen.width < 600;
-  const base = shrunk ? innerWidth / screen.width : 1;
-  if (shrunk){
-    let css = '';
-    for (const sh of document.styleSheets){
-      let rules; try { rules = sh.cssRules; } catch (e) { continue; }
-      for (const r of rules) if (r.media && /max-width/.test(r.media.mediaText)) for (const rr of r.cssRules) css += rr.cssText + '\n';
-    }
-    const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
-  }
-  const phone = shrunk || innerWidth <= 640;
-  const steps = [1, 1.2, 1.4];
-  let step = phone ? 1 : 0;
-  try { const s = localStorage.getItem('hobos-text'); if (s !== null) step = Math.min(2, Math.max(0, +s)); } catch (e) {}
-  const applyZoom = () => {
-    html.style.zoom = (base * steps[step]).toFixed(3);
-    const b = document.getElementById('textsize');
-    b.dataset.step = step;
-    b.setAttribute('aria-label', step < 2 ? 'Ingrandisci il testo' : 'Riporta il testo alla misura normale');
-  };
-  applyZoom();
-  document.getElementById('textsize').addEventListener('click', () => {
-    step = (step + 1) % steps.length; applyZoom();
-    try { localStorage.setItem('hobos-text', step); } catch (e) {}
-    const t = document.getElementById('toast');
-    t.textContent = ['Testo normale', 'Testo grande', 'Testo molto grande'][step];
-    t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1600);
-  });
 
   /* ---------- hero pour ---------- */
   const wave = document.getElementById('wavePath');
@@ -948,7 +797,7 @@ h2{font-size:clamp(54px,8vw,120px)}
   const fit = () => {
     try {
       const b = pourSvg.querySelector('text').getBBox();
-      if (b.width > 0) pourSvg.setAttribute('viewBox', `${(b.x - 6).toFixed(0)} ${(b.y + b.height*.12).toFixed(0)} ${(b.width + 12).toFixed(0)} ${(b.height*.86).toFixed(0)}`);
+      if (b.width > 0) pourSvg.setAttribute('viewBox', `${(b.x - 8).toFixed(0)} ${(b.y - 4).toFixed(0)} ${(b.width + 16).toFixed(0)} ${(b.height + 8).toFixed(0)}`);
     } catch (e) {}
   };
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit);
