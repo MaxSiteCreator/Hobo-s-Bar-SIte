@@ -318,6 +318,73 @@ footer{border-top:1px solid var(--line);padding-block:clamp(50px,7vw,90px) 40px;
   .btn:active,.drink:active,.day:active{transform:scale(.97)}
 }
 
+/* ===== phone: larger reading scale ===== */
+@media (max-width:640px){
+  body{font-size:18px;line-height:1.55;padding-bottom:calc(86px + env(safe-area-inset-bottom,0px))}
+  .nav .wrap{padding-block:12px}
+  .brand{font-size:27px}.brand svg{width:32px;height:32px}
+  .status{font-size:12.5px}
+  .burger{width:50px;height:50px}
+  .burger span{left:15px;right:15px}.burger span:nth-child(1){top:20px}.burger span:nth-child(2){top:28px}
+  .menu-open .burger span:nth-child(1),.menu-open .burger span:nth-child(2){top:24px}
+
+  .hero-top{font-size:14px}
+  .hero-top .chalk-note{font-size:28px}
+  .lede{font-size:22px;line-height:1.45}
+  .btn{font-size:17px;padding:18px 24px}
+  .dock .btn{font-size:17px;padding:16px 10px}
+  .btn svg{width:20px;height:20px}
+  .score b{font-size:88px}
+  .stars svg{width:24px;height:24px}
+  .score span{font-size:14.5px}
+  .ticker-track span{font-size:36px}
+
+  .eyebrow{font-size:13px}
+  h2{font-size:clamp(54px,15.5vw,78px)}
+  .intro p{font-size:18px}
+
+  .sign{grid-template-columns:72px 1fr;padding:28px 20px}
+  .sign svg{width:72px;height:72px}
+  .sign .meaning{font-size:24px}
+  .sign h3{font-size:29px}
+  .sign p{font-size:17px}
+
+  .drinks.rail>*{width:84vw;max-width:360px}
+  .drink{padding:26px}
+  .drink .glass{height:170px}
+  .drink h3{font-size:36px}
+  .drink p{font-size:17px}
+  .spec span{font-size:13px;padding:5px 11px}
+  .drink-foot{font-size:16px}
+  .swipe-hint{font-size:13px}
+  .dots i{width:8px;height:8px}.dots i.on{width:26px}
+
+  .menu-list .n{font-size:38px}
+  .menu-list .d{font-size:17px}
+  .menu-list .t{font-size:13px}
+  .happy .big{font-size:112px}
+  .happy h3{font-size:38px}
+  .happy p{font-size:17.5px}
+
+  .week.rail>*{width:46vw;max-width:200px;min-height:190px}
+  .day .dn{font-size:38px}
+  .day .dt{font-size:17px}
+  .day .dh{font-size:13.5px}
+  .live-note{font-size:17px}
+
+  .tags span{font-size:14px;padding:8px 14px}
+  .quote blockquote{font-size:21px}
+  .quote.main blockquote{font-size:25px}
+  .quote figcaption{font-size:13.5px}
+
+  .info dt{font-size:13px}
+  .info dd{font-size:19px}
+  .copy{font-size:12.5px;padding:6px 12px}
+  .foot-row{font-size:13.5px}
+  .sheet-foot{font-size:14.5px}
+  .toast{font-size:16px}
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
@@ -668,6 +735,16 @@ footer{border-top:1px solid var(--line);padding-block:clamp(50px,7vw,90px) 40px;
     if (!reduce) requestAnimationFrame(pour);
   }
   requestAnimationFrame(pour);
+
+  /* crop the hero canvas to the letters so "HOBO'S" uses the full screen width on phones */
+  const pourSvg = document.querySelector('.pour');
+  const fit = () => {
+    try {
+      const b = pourSvg.querySelector('text').getBBox();
+      if (b.width > 0) pourSvg.setAttribute('viewBox', `${(b.x - 6).toFixed(0)} ${(b.y + b.height*.12).toFixed(0)} ${(b.width + 12).toFixed(0)} ${(b.height*.86).toFixed(0)}`);
+    } catch (e) {}
+  };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit);
 
   /* ---------- bokeh: lungomare lights ---------- */
   const cv = document.getElementById('bokeh'), ctx = cv.getContext('2d');
